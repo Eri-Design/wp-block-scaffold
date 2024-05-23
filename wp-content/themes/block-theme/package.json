@@ -1,0 +1,30 @@
+{
+  "name": "block-theme",
+  "version": "3.1.13",
+  "description": "Block based theme",
+  "devDependencies": {
+    "@wordpress/base-styles": "^4.30.0",
+    "@wordpress/browserslist-config": "^5.16.0",
+    "autoprefixer": "^10.4.2",
+    "chokidar-cli": "^3.0.0",
+    "postcss": "^8.2.12",
+    "postcss-cli": "^10.1.0",
+    "postcss-custom-media": "^10.0.0",
+    "sass": "^1.62.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
+  "scripts": {
+    "start": "chokidar \"sass/**/*.scss\" \"js/**/*.js\" -c \"npm run build\" --initial",
+    "build": "npm run build:scss && npm run build:admin && npm run build:js",
+    "build:scss": "sass sass/ponyfill.scss assets/ponyfill.css --style=expanded --load-path ../node_modules && postcss assets/ponyfill.css --use autoprefixer postcss-custom-media --output assets/ponyfill.css --map",
+    "build:admin": "sass sass/admin.scss assets/admin.css --style=expanded --load-path ../node_modules && postcss assets/admin.css --use autoprefixer postcss-custom-media --output assets/admin.css --map",
+    "build:js": "webpack --config webpack.config.js",
+    "package": "tar --exclude=node_modules -cvf ../block-theme.tar ../block-theme"
+  },
+  "author": "ERI Design Studio",
+  "license": "GPLv2"
+}

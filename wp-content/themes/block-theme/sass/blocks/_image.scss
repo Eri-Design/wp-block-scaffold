@@ -1,0 +1,60 @@
+.wp-block-image {
+	/*
+	From what I can tell the below are styles regularly used by themes
+	to fix the images block.  I believe these should go into the block's
+	default styles.  It's difficult to say how this will land, however
+	based on discussion found in (many) related issues here:
+	https://github.com/WordPress/gutenberg/issues/28923
+	https://github.com/WordPress/gutenberg/issues/29506
+	*/
+	margin: 0 0 18px 0;
+
+	@media (--bp-tablet) {
+		margin: 0 0 24px 0;
+	}
+
+	&.alignleft,
+	&.alignright {
+		@media (--bp-tablet) {
+			max-width: 100%;
+		}
+	}
+
+	&.alignleft {
+		@media (--bp-mobile-only) {
+			max-width: 100%;
+		}
+
+		@media (--bp-tablet) {
+			float: left;
+			margin: 24px 30px 24px 0;
+		}
+	}
+
+	&.alignright {
+		@media (--bp-mobile-only) {
+			max-width: 100%;
+		}
+
+		@media (--bp-tablet) {
+			float: right;
+			margin: 24px 0 24px 30px;
+		}
+	}
+
+	.wp-element-caption {
+		font-size: 14px;
+		font-style: italic;
+		line-height: 24px;
+		margin-bottom: 0;
+		margin-top: 10px;
+		padding-left: 0;
+
+		@media (--bp-tablet) {
+			font-size: 16px;
+			line-height: 27px;
+			margin-top: 15px;
+			padding-left: 15px;
+		}
+	}
+}

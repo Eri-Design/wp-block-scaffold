@@ -1,0 +1,27 @@
+// Needed until https://github.com/WordPress/gutenberg/issues/36122 is fixed
+p {
+	line-height: 24px;
+
+	@media (--bp-tablet) {
+		line-height: 33px;
+	}
+
+	&.has-drop-cap {
+		font-size: 18px;
+	}
+
+	&.has-drop-cap:not(:focus)::first-letter {
+		font-size: var(--wp--custom--paragraph--dropcap--typography--font-size);
+		font-weight: var(--wp--custom--paragraph--dropcap--typography--font-weight);
+		margin: var(--wp--custom--paragraph--dropcap--margin);
+		text-shadow: -3px 3px 0 var(--eri-scaffold--color--accent);
+	}
+}
+
+span[style="text-decoration: underline;"] {
+	background-image: linear-gradient(to right, var(--eri-scaffold--color--accent), var(--eri-scaffold--color--accent));
+	background-repeat: no-repeat;
+	background-position: 0% 90%;
+	background-size: 100% 2px;
+	text-decoration: none !important;
+}

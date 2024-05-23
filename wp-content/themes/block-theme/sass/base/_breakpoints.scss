@@ -1,0 +1,17 @@
+
+@import "../../node_modules/@wordpress/base-styles/breakpoints";
+@import "../../node_modules/@wordpress/base-styles/mixins";
+
+@mixin break-small-only() {
+
+	@media (max-width: #{ ($break-small - 1) }) {
+		@content;
+	}
+}
+
+/*
+ * Media Queries
+ */
+@custom-media --bp-desktop ( min-width: 1100px );
+@custom-media --bp-tablet ( min-width: 800px );
+@custom-media --bp-mobile-only ( max-width: 799px );

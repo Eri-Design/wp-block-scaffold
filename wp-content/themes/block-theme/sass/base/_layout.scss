@@ -1,0 +1,26 @@
+:root {
+	--wpadmin-bar--height: 46px;
+}
+
+.site-footer-container {
+	margin-top: auto;
+}
+
+body.admin-bar {
+
+	@include break-small() {
+		--wpadmin-bar--height: 32px;
+	}
+
+	.wp-site-blocks {
+		min-height: calc(100vh - var(--wpadmin-bar--height));
+	}
+}
+
+.wp-block-post-content {
+	margin: rc(18, 60) 0;
+}
+
+main.wp-block-group {
+	margin-top: 0 !important;
+}

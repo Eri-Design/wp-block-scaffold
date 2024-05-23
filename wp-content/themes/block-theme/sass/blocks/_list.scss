@@ -1,0 +1,43 @@
+ul:not([class]),
+ol:not([class]) {
+	padding: 0 0 0 15px;
+	margin: 0 0 30px 0;
+
+	.block-editor-rich-text__editable {
+		display: inline;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@media (--bp-tablet) {
+		padding: 0 0 0 24px;
+	}
+}
+
+ul:not([class]) {
+	list-style: none;
+
+	li {
+		> p {
+			&:first-child {
+				margin-top: 0;
+				display: inline-block;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&::before {
+			content: "\2022";
+			color: var(--wp--preset--color--primary);
+			font-weight: bold;
+			display: inline-block;
+			width: 1em;
+			margin-left: -1em;
+		}
+	}
+}

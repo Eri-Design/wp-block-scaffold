@@ -1,0 +1,28 @@
+body.page-template-default:not(.home) {
+	.wp-site-blocks {
+		margin: 0 auto;
+		max-width: var(--wp--style--global--wide-size);
+	}
+
+	.alignfull {
+		@media (--bp-desktop) {
+			width: var(--viewportWidth, 100vw);
+			max-width: var(--viewportWidth, 100vw);
+			margin-left: calc(50% - var(--viewportWidth, 100vw) / 2);
+			margin-right: calc(50% - var(--viewportWidth, 100vw) / 2);
+		}
+	}
+
+	.alignwide {
+		@media (--bp-desktop) {
+			max-width: var(--wp--style--global--wide-size);
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	.wp-block-post-content {
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+	}
+}

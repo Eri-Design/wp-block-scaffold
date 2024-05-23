@@ -1,0 +1,25 @@
+@use "sass:math";
+
+$rem-base: 16;
+
+@function rc( $min, $max, $minWidth: 700, $maxWidth: 1400, $units: 1rem ) {
+	@if ($units == 1rem) {
+		$min: math.div($min, $rem-base);
+		$max: math.div($max, $rem-base);
+	}
+
+	$minWidth: math.div($minWidth, $rem-base);
+	$maxWidth: math.div($maxWidth, $rem-base);
+
+	$slope: math.div($max - $min, $maxWidth - $minWidth);
+	$yAxisIntersection: -$minWidth * $slope + $min;
+
+	@if ($min > $max) {
+		$newMin: $max;
+		$newMax: $min;
+		$min: $newMin;
+		$max: $newMax;
+	}
+
+	@return clamp($min * $units, calc(#{$yAxisIntersection * $units} + #{$slope * 100vw}), $max * $units);
+}

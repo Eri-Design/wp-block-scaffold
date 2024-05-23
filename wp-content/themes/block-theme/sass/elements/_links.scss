@@ -1,0 +1,28 @@
+// Default link styles
+a,
+.wp-block-navigation a {
+	text-underline-offset: 0.15em;
+}
+
+a:where(:not(.wp-element-button):not([class])),
+.is-style-link {
+	color: var(--wp--preset--color--primary);
+	text-decoration: underline;
+	/*background-image: linear-gradient(to bottom, #a41d36, #a41d36);
+	transition: background-size 0.3s;
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 0% 2px;
+	padding: 0 0 3px 0;
+	display: inline;*/
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	/*background-color: transparent;*/
+
+	&:hover {
+		/*background-size: 100% 2px;*/
+		text-decoration: none;
+	}
+}

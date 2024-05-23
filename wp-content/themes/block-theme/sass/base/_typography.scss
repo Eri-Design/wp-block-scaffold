@@ -1,0 +1,38 @@
+$font-sizes: (
+  'heading-1',
+  'heading-2',
+  'heading-3',
+  'heading-4',
+  'heading-5',
+  'heading-6',
+  'lead',
+  'overline',
+  'normal'
+);
+
+@each $size in $font-sizes {
+	.has-#{$size}-font-size {
+		line-height: var(--wp--custom--line-height--#{$size});
+		font-weight: var(--wp--custom--font-weight--#{$size});
+		font-family: var(--wp--custom--font-family--#{$size});
+	}
+}
+
+@media (--bp-mobile-only) {
+	body,
+	.wp-block-heading {
+		@each $size in $font-sizes {
+			--wp--custom--font-sizes--#{$size}: var(--wp--custom--font-sizes--#{$size}-mobile) !important;
+		}
+	}
+}
+
+.has-overline-font-size {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 9px;
+
+	+ .wp-block-heading {
+		margin-top: 0;
+	}
+}

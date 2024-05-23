@@ -1,0 +1,13 @@
+#menu-posts-faculty {
+	a[href="post-new.php?post_type=faculty"] {
+		display: none;
+	}
+}
+
+.editor-post-title {
+	display: none;
+}
+
+.is-position-sticky {
+	flex-shrink: 0;
+}

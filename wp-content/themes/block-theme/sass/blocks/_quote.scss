@@ -1,0 +1,62 @@
+.wp-block-quote.is-style-large,
+.wp-block-quote {
+	border-width: 0 0 0 0;
+	flex-shrink: 0;
+	padding-left: 0;
+	position: relative;
+
+	&::before {
+		align-items: center;
+		background-color: var(--eri-scaffold--color--accent);
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' class='icon icon-quote' id='icon-quote' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M14.924 25.886h-9.591v-9.632c0-5.656 3.197-8.852 9.591-9.587v4.816c-3.092 0.105-4.698 1.695-4.818 4.771h4.818v9.632zM26.667 25.886h-9.591v-9.632c0-5.656 3.197-8.852 9.591-9.587v4.816c-3.092 0.105-4.698 1.695-4.818 4.771h4.818v9.632z'%3E%3C/path%3E%3C/svg%3E");
+		display: flex;
+		content: "";
+		height: 48px;
+		justify-content: center;
+		left: -12px;
+		opacity: 0.3;
+		position: absolute;
+		top: -30px;
+		width: 48px;
+	}
+
+	@media (--bp-tablet) {
+		&::before {
+			height: 100px;
+			left: -30px;
+			top: -60px;
+			width: 100px;
+		}
+	}
+
+	p {
+		font-size: 18px;
+		line-height: 33px;
+		margin-top: 0px;
+
+		@media (--bp-tablet) {
+			font-size: 24px;
+			line-height: 48px;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.wp-block-quote__citation,
+	// For the editor
+	cite {
+		//See https://github.com/WordPress/gutenberg/issues/35735
+		font-size: var(--wp--custom--quote--citation--typography--font-size);
+		font-style: var(--wp--custom--quote--citation--typography--font-style);
+	}
+}
+
+.is-position-sticky {
+	flex-shrink: 0;
+}
