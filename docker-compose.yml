@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   wordpress:
-    image: "wordpress:6.5.3-php8.0-apache"
+    image: "wordpress:6.5.3-php8.1-apache"
     environment:
       WORDPRESS_DB_HOST: "mysql"
       WORDPRESS_DB_NAME: "wordpress"
@@ -16,8 +16,8 @@ services:
     networks:
       - "back"
     volumes:
-      - "./wp-content/themes/muhlenberg-magazine:/var/www/html/wp-content/themes/block-theme"
-      - "./wp-content/plugins/muhlenberg-blocks:/var/www/html/wp-content/plugins/blocks-custom"
+      - "./wp-content/themes/block-theme:/var/www/html/wp-content/themes/block-theme"
+      - "./wp-content/plugins/blocks-custom:/var/www/html/wp-content/plugins/blocks-custom"
       - wp:/var/www/html
   mysql:
     image: "mariadb:10.2"

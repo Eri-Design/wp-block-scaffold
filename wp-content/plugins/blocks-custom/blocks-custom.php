@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ERI Scaffold Blocks
+ * Plugin Name: Eri Scaffold Blocks
  * Plugin URI: https://eridesign.com
  * Description: Adds custom blocks and post types to site.
  * Version: 1.0.0
@@ -227,13 +227,13 @@ function eri_scaffold_blocks_register_blocks() {
     }
 
     if ( function_exists( 'wp_set_script_translations' ) ) {
-	/**
-	 * Adds internationalization support.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/internationalization/
-	 * @link https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-	 */
-	wp_set_script_translations( 'eri-scaffold-blocks-editor-script', 'eri-scaffold-blocks', plugin_dir_path( __FILE__ ) . '/languages' );
+        /**
+         * Adds internationalization support.
+         *
+         * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/internationalization/
+         * @link https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+         */
+        wp_set_script_translations( 'eri-scaffold-blocks-editor-script', 'eri-scaffold-blocks', plugin_dir_path( __FILE__ ) . '/languages' );
 	}
 
     // Register frontend styles
