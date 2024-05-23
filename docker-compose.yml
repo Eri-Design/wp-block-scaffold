@@ -1,0 +1,38 @@
+version: "3.1"
+
+services:
+  wordpress:
+    image: "wordpress:6.5.3-php8.0-apache"
+    environment:
+      WORDPRESS_DB_HOST: "mysql"
+      WORDPRESS_DB_NAME: "wordpress"
+      WORDPRESS_DB_PASSWORD: ""
+      WORDPRESS_DB_USER: "root"
+      WORDPRESS_DEBUG: 1
+    depends_on:
+      - "mysql"
+    ports:
+      - 8000:80
+    networks:
+      - "back"
+    volumes:
+      - "./wp-content/themes/muhlenberg-magazine:/var/www/html/wp-content/themes/block-theme"
+      - "./wp-content/plugins/muhlenberg-blocks:/var/www/html/wp-content/plugins/blocks-custom"
+      - wp:/var/www/html
+  mysql:
+    image: "mariadb:10.2"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "wordpress"
+      MYSQL_ROOT_PASSWORD: ""
+    networks:
+      - "back"
+    volumes:
+      - db:/var/lib/mysql
+
+networks:
+  back: {}
+
+volumes:
+  db: {}
+  wp: {}
