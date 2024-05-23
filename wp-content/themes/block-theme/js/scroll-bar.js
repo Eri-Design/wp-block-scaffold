@@ -1,5 +1,5 @@
 document.addEventListener( 'DOMContentLoaded', ( event ) => {
-    const article = document.getElementById( 'main' );
+	const article = document.getElementById( 'main' );
 	const single = document.querySelector( '.single' );
 	const singleIssue = document.querySelector( '.single-issues-post' );
 
@@ -32,7 +32,7 @@ function createProgressBar() {
 	const progressBar = document.createElement( 'div' );
 	progressBar.id = 'progressBar';
 	progressBar.classList.add( 'progress-bar' );
-	
+
 	progressBar.style.height = '6px';
 	progressBar.style.width = '0%';
 

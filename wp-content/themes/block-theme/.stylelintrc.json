@@ -1,0 +1,63 @@
+{
+	"extends": "@wordpress/stylelint-config/scss",
+	"rules": {
+		"at-rule-empty-line-before": [
+			"always",
+			{
+				"except": [
+					"first-nested"
+				],
+				"ignore": [
+					"blockless-after-same-name-blockless",
+					"after-comment"
+				],
+				"ignoreAtRules": [
+					"else"
+				]
+			}
+		],
+		"at-rule-no-unknown": null,
+		"comment-empty-line-before": "always",
+		"font-weight-notation": null,
+		"max-line-length": null,
+		"no-descending-specificity": null,
+		"rule-empty-line-before": [
+			"always",
+			{
+				"except": [
+					"first-nested",
+					"after-single-line-comment"
+				],
+				"ignore": [
+					"after-comment"
+				]
+			}
+		],
+		"selector-class-pattern": null,
+		"value-keyword-case": null,
+		"scss/operator-no-unspaced": null,
+		"scss/selector-no-redundant-nesting-selector": null,
+		"scss/at-import-partial-extension": null,
+		"scss/no-global-function-names": null,
+		"scss/comment-no-empty": null,
+		"scss/at-extend-no-missing-placeholder": null,
+		"scss/operator-no-newline-after": null,
+		"scss/at-if-closing-brace-newline-after": null,
+		"scss/at-else-empty-line-before": null,
+		"scss/at-if-closing-brace-space-after": null,
+		"no-invalid-position-at-import-rule": null,
+		"indentation": "tab",
+		"declaration-empty-line-before": [
+			"always",
+			{
+				"except": [
+					"first-nested",
+					"after-declaration"
+				]
+			}
+		],
+		"max-empty-lines": 1,
+		"block-no-empty": null,
+		"function-url-quotes": null
+	}
+}
