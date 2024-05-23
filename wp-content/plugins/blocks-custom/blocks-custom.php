@@ -41,7 +41,7 @@ function eri_scaffold_blocks_load_textdomain() {
 }
 
 /**
- * Add custom "Muhlenberg" block category
+ * Add custom "Eri Scaffold" block category
  *
  * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/filters/block-filters/#managing-block-categories
  */
@@ -50,7 +50,7 @@ function eri_scaffold_blocks_block_categories_all( $categories, $post ) {
 
     array_unshift( $categories, array(
         'slug'	=> 'eri-scaffold',
-        'title' => __('ERI Scaffold', 'eri-scaffold-blocks'),
+        'title' => __('Eri Scaffold', 'eri-scaffold-blocks'),
     ) );
 
     return $categories;

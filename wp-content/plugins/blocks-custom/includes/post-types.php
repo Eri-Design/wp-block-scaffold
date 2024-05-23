@@ -1,6 +1,6 @@
 <?php
 /**
- * Functions and hooks for custom post types used in Muhlenberg Magazine.
+ * Functions and hooks for custom post types.
  */
 
 add_action( 'init', 'eri_scaffold_register_post_types' );
