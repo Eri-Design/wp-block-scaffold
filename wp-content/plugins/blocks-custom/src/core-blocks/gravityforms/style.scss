@@ -1,0 +1,264 @@
+@import "imports";
+/*
+.gform_wrapper {
+	margin: 0 auto;
+	padding: 0;
+	max-width: 960px;
+
+	.gform_title {
+		margin-top: 0;
+		margin-bottom: 32px;
+	}
+
+	.gform_description {
+		margin-bottom: 32px;
+	}
+}
+
+.gform_footer {
+	margin-top: 0 !important;
+}
+
+form[id*="gform"] {
+	--gform-theme-form-col-gap: 18px;
+	--gform-theme-form-row-gap: 18px;
+	--gform-theme-field-col-gap: 18px;
+	--gform-theme-field-row-gap: 18px;
+
+	@media (--bp-tablet) {
+		--gform-theme-form-col-gap: 30px;
+		--gform-theme-form-row-gap: 30px;
+		--gform-theme-field-col-gap: 30px;
+		--gform-theme-field-row-gap: 30px;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="url"],
+	input[type="tel"],
+	input[type="search"],
+	input[type="number"],
+	input[type="date"],
+	input[type="time"],
+	input[type="month"],
+	input[type="week"],
+	input[type="color"],
+	input[type="file"],
+	textarea,
+	select {
+		background-color: #f2f2f2 !important;
+		border: 1px #ddd solid !important;
+		border-radius: 6px;
+		font-family: Merriweather, sans-serif;
+		font-weight: 500;
+		height: 48px;
+		padding: 12px 18px;
+		font-size: 14px;
+		line-height: 21px;
+		box-shadow: none !important;
+		transition: background-color 0.3s, outline 0.3s;
+		outline: 2px solid transparent;
+		color: var(--wp--preset--color--foreground);
+
+		@media (--bp-tablet) {
+			font-size: 16px;
+			line-height: 24px;
+		}
+
+		&:hover {
+			background-color: var(--wp--preset--color--white) !important;
+		}
+
+		&:focus {
+			outline: 2px solid var(--wp--preset--color--primary);
+		}
+
+		&::placeholder {
+			color: var(--wp--preset--color--foreground);
+			opacity: 0.7;
+		}
+	}
+
+	input[type="number"] {
+		min-width: 50px;
+
+		@media (--bp-tablet) {
+			min-width: 100px;
+		}
+	}
+
+	.gfield_time_hour,
+	.gfield_time_minute,
+	.gfield_time_ampm {
+		min-width: 50px;
+		flex: 0 0 max-content;
+
+		@media (--bp-tablet) {
+			min-width: 100px;
+		}
+
+		input,
+		select {
+			min-width: 50px;
+
+			@media (--bp-tablet) {
+				min-width: 100px;
+			}
+		}
+	}
+
+	select {
+		-webkit-appearance: none;
+		appearance: none;
+		background-image: url("../../../images/double-caret.svg");
+		background-position: center right 20px;
+		background-repeat: no-repeat;
+		padding-right: 40px;
+
+		&[multiple] {
+			height: auto;
+			background-image: none;
+		}
+	}
+
+	input[type="submit"],
+	.gform_button {
+		background-color: var(--wp--preset--color--primary) !important;
+		border: 0 !important;
+		box-sizing: border-box !important;
+		color: var(--wp--preset--color--white) !important;
+		cursor: pointer !important;
+		font-family: Merriweather, sans-serif !important;
+		font-weight: 900 !important;
+		font-size: 14px !important;
+		letter-spacing: 1.6px !important;
+		line-height: 21px !important;
+		margin: 0 !important;
+		border-radius: 0 !important;
+		justify-content: center !important;
+		align-items: center !important;
+		padding: 14px 24px 13px 24px !important;
+		position: relative !important;
+		text-decoration: none !important;
+		text-transform: uppercase !important;
+		transition: all 0.3s !important;
+		max-width: 100% !important;
+		height: 100% !important;
+
+		&:hover {
+			transform: scale(0.95) !important;
+			border-radius: 0 !important;
+		}
+
+		@media (--bp-desktop) {
+			padding: 20px 30px 19px 30px !important;
+		}
+	}
+
+	.gfield_label {
+		font-family: GothamPro, sans-serif;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.gsection_title {
+		margin-bottom: 0;
+	}
+
+	.gfield_radio,
+	.gfield_checkbox,
+	.ginput_container_consent {
+		label {
+			font-size: 16px;
+			line-height: 24px;
+			letter-spacing: -0.2px;
+			padding-left: 9px;
+			margin-left: 0;
+			cursor: pointer;
+		}
+
+		input {
+			width: 16px;
+			height: 16px;
+			border: 2px solid var(--wp--preset--color--primary);
+			outline: 2px solid transparent;
+			transition: background-color 0.3s, outline 0.3s;
+			cursor: pointer;
+			box-shadow: none !important;
+
+			&:focus-visible {
+				outline: 2px solid var(--wp--preset--color--foreground);
+			}
+
+			&:checked {
+				background-color: var(--wp--preset--color--primary);
+			}
+
+			&::before {
+				display: none;
+			}
+		}
+
+		.gchoice {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+	}
+
+	.gfield_checkbox,
+	.ginput_container_consent {
+		input {
+			&:checked {
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23ffffff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M20.02 5.707a1 1 0 0 0-.684.313L9.096 16.543l-4.182-4.15a1 1 0 1 0-1.41 1.418l4.898 4.865a1 1 0 0 0 1.422-.014L20.77 7.414a1 1 0 0 0-.75-1.707z'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-size: 16px 16px;
+				background-position: center center;
+			}
+		}
+	}
+
+	.ginput_container_consent {
+		align-items: center;
+	}
+
+	.add_list_item,
+	.delete_list_item {
+		background-color: var(--wp--preset--color--primary) !important;
+		width: 16px;
+		height: 16px;
+		-webkit-appearance: none;
+		appearance: none;
+		transition: background-color 0.3s, outline 0.3s;
+		outline: 2px solid transparent !important;
+		box-shadow: none !important;
+
+		&:focus-visible {
+			box-shadow: 0 0 0 2px var(--wp--preset--color--foreground) !important;
+		}
+
+		&::before {
+			background-repeat: no-repeat;
+			background-size: 16px 16px;
+			background-position: center center;
+			width: 16px;
+			height: 16px;
+			content: "" !important;
+		}
+	}
+
+	.add_list_item {
+		&::before {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23ffffff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M17.333 8v16c0 .736-.597 1.333-1.333 1.333s-1.333-.597-1.333-1.333V8c0-.736.597-1.333 1.333-1.333s1.333.597 1.333 1.333z'/%3E%3Cpath d='M8 14.667h16c.736 0 1.333.597 1.333 1.333s-.597 1.333-1.333 1.333H8c-.736 0-1.333-.597-1.333-1.333S7.264 14.667 8 14.667z'/%3E%3C/svg%3E") !important;
+		}
+	}
+
+	.delete_list_item {
+		&::before {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23ffffff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M8 14.667h16c0.736 0 1.333 0.597 1.333 1.333s-0.597 1.333-1.333 1.333h-16c-0.736 0-1.333-0.597-1.333-1.333s0.597-1.333 1.333-1.333z'/%3E%3C/svg%3E") !important;
+		}
+	}
+}
+*/

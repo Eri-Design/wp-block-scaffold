@@ -1,0 +1,11 @@
+{
+	"apiVersion": 3,
+	"title": "Accordion",
+	"name": "eri-scaffold/accordion",
+	"category": "custom",
+	"script": "file:./index.js",
+	"viewScript": "file:./script.js",
+	"style": "file:./style-index.css",
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./editor.js"
+}

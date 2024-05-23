@@ -1,3 +1,9 @@
+# Allow specific plugins and themes
+wp-content/plugins/*
+!wp-content/plugins/blocks-custom
+wp-content/themes/*
+!wp-content/themes/block-theme
+
 # Logs
 logs
 *.log
@@ -41,6 +47,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+vendor/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

@@ -1,0 +1,42 @@
+{
+  "name": "blocks-custom",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@wordpress/eslint-plugin": "^15.1.0",
+    "@wordpress/scripts": "^26.11.0",
+    "autoprefixer": "^10.4.15",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "cssnano": "^6.0.1",
+    "dotenv": "^16.3.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "glob": "^7.2.3",
+    "path": "^0.12.7",
+    "postcss": "^8.4.29",
+    "postcss-cli": "^10.1.0",
+    "postcss-custom-media": "^10.0.0",
+    "postcss-pxtorem": "^6.0.0",
+    "stylelint-webpack-plugin": "^4.1.1",
+    "url-loader": "^4.1.1"
+  },
+  "scripts": {
+    "start": "wp-scripts start --webpack-src-dir=src/ --output-path=build/",
+    "build": "wp-scripts build --webpack-src-dir=src/ --output-path=build/",
+    "package": "tar --exclude=node_modules -cvf ../blocks-custom.tar ../blocks-custom"
+  },
+  "dependencies": {
+    "dompurify": "^3.0.5",
+    "embla-carousel": "^8.0.0-rc22",
+    "embla-carousel-auto-scroll": "^8.0.0-rc22",
+    "embla-carousel-react": "^8.0.0-rc22",
+    "he": "^1.2.0",
+    "html-react-parser": "^5.1.6",
+    "lity": "^2.4.1",
+    "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "^18.2.0",
+    "react-player": "^2.13.0"
+  }
+}
