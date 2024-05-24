@@ -1,0 +1,1 @@
+docker run --rm -v $(pwd):/app willhallonline/wordpress-phpcs:alpine phpcbf --standard=phpcs.xml.dist .

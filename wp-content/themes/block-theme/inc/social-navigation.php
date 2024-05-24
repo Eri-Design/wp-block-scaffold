@@ -1,7 +1,20 @@
 <?php
+/**
+ * Social navigation.
+ *
+ * @package EriScaffoldTheme
+ */
 
 // We should only change the render of the navigtion block
 // to social links in the following conditions.
+/**
+ * Check if the block should be rendered as a social links block.
+ *
+ * @param string $block_content The block content.
+ * @param array  $block The block data.
+ *
+ * @return bool
+ */
 function eri_scaffoldcondition_to_render_social_menu( $block_content, $block ) {
 	// The block should be a navigation block.
 	if ( 'core/navigation' !== $block['blockName'] ) {
@@ -13,15 +26,16 @@ function eri_scaffoldcondition_to_render_social_menu( $block_content, $block ) {
 		return false;
 	}
 
-	// The block should be empty (no custom menu assigned)
-	if ( ! empty($block['attrs']['navigationMenuId']) || ! empty($block['attrs']['ref']) ) {
+	// The block should be empty (no custom menu assigned).
+	if ( ! empty( $block['attrs']['navigationMenuId'] ) || ! empty( $block['attrs']['ref'] ) ) {
 		return false;
 	}
-	
+
 	// The block should have the class 'social-links'.
 	if ( empty( $block['attrs']['className'] ) ) {
 		return false;
 	}
+
 	if ( ! str_contains( $block['attrs']['className'], 'social-links' ) ) {
 		return false;
 	}
@@ -29,6 +43,13 @@ function eri_scaffoldcondition_to_render_social_menu( $block_content, $block ) {
 	return true;
 }
 
+/**
+ * Check if the theme has navigation/social-links settings.
+ *
+ * @param array $theme_data The theme.json data.
+ *
+ * @return bool
+ */
 function eri_scaffoldtheme_has_navigation_social_links_settings( $theme_data ) {
 	return $theme_data
 		&& array_key_exists( 'settings', $theme_data )
@@ -38,6 +59,13 @@ function eri_scaffoldtheme_has_navigation_social_links_settings( $theme_data ) {
 		&& array_key_exists( 'text', $theme_data['settings']['custom']['navigation/social-links']['color'] );
 }
 
+/**
+ * Get the social menu as a social links block.
+ *
+ * @param array $block The block data.
+ *
+ * @return string
+ */
 function get_social_menu_as_social_links_block( $block ) {
 
 	$social_links_location = 'social';
@@ -72,12 +100,20 @@ function get_social_menu_as_social_links_block( $block ) {
 	return do_blocks( $social_links_content );
 }
 
+/**
+ * Append the social links block to the navigation block.
+ *
+ * @param string $parent_content The parent block content.
+ * @param string $social_links_block The social links block content.
+ *
+ * @return string
+ */
 function append_social_links_block( $parent_content, $social_links_block ) {
 	if ( empty( $parent_content ) ) {
 		return $social_links_block;
 	}
-	$dom      = new domDocument;
-	$domXPath = new DomXPath( $dom );
+	$dom        = new domDocument();
+	$dom_x_path = new DomXPath( $dom );
 	// Since the nav block uses HTML5 element names, we need to suppress the warnings it sends when we loadHTML with HTML5 elements.
 	libxml_use_internal_errors( true );
 	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $parent_content );
@@ -91,6 +127,14 @@ function append_social_links_block( $parent_content, $social_links_block ) {
 	return $dom->saveXML( $navigation_block );
 }
 
+/**
+ * Render the social menu.
+ *
+ * @param string $block_content The block content.
+ * @param array  $block The block data.
+ *
+ * @return string
+ */
 function eri_scaffoldsocial_menu_render( $block_content, $block ) {
 	if ( eri_scaffoldcondition_to_render_social_menu( $block_content, $block ) ) {
 		$social_links_block = get_social_menu_as_social_links_block( $block );

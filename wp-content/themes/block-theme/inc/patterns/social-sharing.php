@@ -1,6 +1,7 @@
 <?php
 /**
  * Social Sharing Icons
+ *
  * @package EriScaffoldTheme
  */
 

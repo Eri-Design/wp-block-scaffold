@@ -1,10 +1,15 @@
 <?php
+/**
+ * REST API modifications.
+ *
+ * @package EriScaffoldTheme
+ */
 
 /**
  * Removes the style variations of child themes inherited by the parent theme.
  *
  * @param WP_REST_Response|WP_HTTP_Response|WP_Error|mixed $response Result to send to the client.
- * @param array $handler Route handler used for the request.
+ * @param array                                            $handler Route handler used for the request.
  *
  * @return WP_REST_Response|WP_HTTP_Response|WP_Error|mixed Result to send to the client.
  */

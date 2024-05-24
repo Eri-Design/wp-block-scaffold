@@ -1,11 +1,12 @@
 <?php
+/**
+ * Custom fonts functionality.
+ *
+ * @package EriScaffoldTheme
+ */
 
-// Font settings deprecation message
-require get_template_directory() . '/inc/customizer/wp-customize-fonts.php';
-
-// Font Migration
-//require get_template_directory() . '/inc/fonts/custom-font-migration.php';
-
+// Font Migration.
+// require get_template_directory() . '/inc/fonts/custom-font-migration.php'; // phpcs:ignore.
 add_action( 'init', 'enqueue_global_styles_fonts', 100 );
 add_action( 'admin_init', 'enqueue_fse_font_styles' );
 add_filter( 'pre_render_block', 'enqueue_block_fonts', 10, 2 );
@@ -14,17 +15,18 @@ add_filter( 'jetpack_google_fonts_list', 'eri_scaffold_filter_jetpack_google_fon
 $eri_scaffold_enqueued_font_slugs = array();
 
 /**
- * Get the CSS containing font_face values for a given slug
+ * Get the CSS containing font_face values for a given slug.
  *
- * @return string String of CSS
+ * @param string $slug The font slug.
+ *
+ * @return string String of CSS.
  */
 function get_style_css( $slug ) {
 	$font_face_file = get_template_directory() . '/assets/fonts/' . $slug . '/font-face.css';
-//    error_log($font_face_file);
 	if ( ! file_exists( $font_face_file ) ) {
 		return '';
 	}
-	$contents = file_get_contents( $font_face_file );
+	$contents = file_get_contents( $font_face_file ); // phpcs:ignore
 	return str_replace( 'src: url(./', 'src: url(' . get_template_directory_uri() . '/assets/fonts/' . $slug . '/', $contents );
 }
 
@@ -35,7 +37,7 @@ function get_style_css( $slug ) {
  */
 function collect_fonts_from_global_styles() {
 	// NOTE: We have to use gutenberg_get_global_styles() here due to the potential changes to Global Styles on page load happening in font migration.
-	// Since core users don't have anything to migrate we can use core get_styles
+	// Since core users don't have anything to migrate we can use core get_styles.
 	if ( function_exists( 'gutenberg_get_global_styles' ) ) {
 		$global_styles = gutenberg_get_global_styles();
 	} else {
@@ -142,33 +144,27 @@ function enqueue_global_styles_fonts() {
 	$font_slugs = array();
 	$font_css   = '';
 
-//	if ( is_admin() ) {
-		$font_families = collect_fonts_from_eri_scaffold();
-		foreach ( $font_families as $font_family ) {
-			$font_slugs[] = $font_family['slug'];
-		}
-//	} else {
-//		$font_slugs = collect_fonts_from_global_styles();
-//	}
+	$font_families = collect_fonts_from_eri_scaffold();
+	foreach ( $font_families as $font_family ) {
+		$font_slugs[] = $font_family['slug'];
+	}
 
-    // NOTE: We have to use gutenberg_get_global_styles() here due to the potential changes to Global Styles on page load happening in font migration.
-    // Since core users don't have anything to migrate we can use core get_styles
-    if ( function_exists( 'gutenberg_get_global_styles' ) ) {
-        $global_styles = gutenberg_get_global_styles();
-    } else {
-        $global_styles = wp_get_global_styles();
-    }
+	// NOTE: We have to use gutenberg_get_global_styles() here due to the potential changes to Global Styles on page load happening in font migration.
+	// Since core users don't have anything to migrate we can use core get_styles.
+	if ( function_exists( 'gutenberg_get_global_styles' ) ) {
+		$global_styles = gutenberg_get_global_styles();
+	} else {
+		$global_styles = wp_get_global_styles();
+	}
 
-    // Check if a global typography setting was defined.
-    $font_slug = extract_font_slug_from_setting( $global_styles );
-    if ( $font_slug ) {
-        $font_slugs[] = $font_slug;
-    }
-    $font_slugs = array_unique( $font_slugs );
+	// Check if a global typography setting was defined.
+	$font_slug = extract_font_slug_from_setting( $global_styles );
+	if ( $font_slug ) {
+		$font_slugs[] = $font_slug;
+	}
+	$font_slugs = array_unique( $font_slugs );
 
-//error_log(print_r($font_slugs,true));
-
-    $eri_scaffold_enqueued_font_slugs = $font_slugs;
+	$eri_scaffold_enqueued_font_slugs = $font_slugs;
 
 	foreach ( $font_slugs as $font_slug ) {
 		$font_css .= get_style_css( $font_slug );
@@ -180,7 +176,6 @@ function enqueue_global_styles_fonts() {
 	}
 
 	// Enqueue the stylesheet.
-	wp_register_style( 'eri_scaffold_font_faces', '' );
 	wp_enqueue_style( 'eri_scaffold_font_faces' );
 
 	// Add the styles to the stylesheet.
@@ -188,7 +183,10 @@ function enqueue_global_styles_fonts() {
 }
 
 /**
- * Enqueue all of the fonts provided for FSE use
+ * Enqueue all of the fonts provided for FSE use.
+ *
+ * @param array $fonts The fonts to enqueue.
+ * @return void
  */
 function enqueue_fse_font_styles( $fonts ) {
 	$fonts    = collect_fonts_from_eri_scaffold();
@@ -203,7 +201,11 @@ function enqueue_fse_font_styles( $fonts ) {
 }
 
 /**
- * Add fonts that have been assigned via CSS
+ * Add fonts that have been assigned via CSS.
+ *
+ * @param string $content The content.
+ * @param array  $parsed_block The parsed block.
+ * @return string The content.
  */
 function enqueue_block_fonts( $content, $parsed_block ) {
 	global $eri_scaffold_enqueued_font_slugs;
@@ -223,13 +225,17 @@ function enqueue_block_fonts( $content, $parsed_block ) {
 /**
  * Jetpack may attempt to register fonts for the Google Font Provider.
  * This filters out all of the fonts that are already registered.
+ *
+ * @param array $jetpack_fonts The fonts Jetpack is attempting to register.
+ *
+ * @return array The fonts that Jetpack should register.
  */
 function eri_scaffold_filter_jetpack_google_fonts_list( $jetpack_fonts ) {
 	$theme_fonts         = collect_fonts_from_eri_scaffold();
 	$theme_font_families = array_column( $theme_fonts, 'name' );
 	$filtered_list       = array();
 
-	// If the Jetpack font isn't in theme already, let Jetpack register it
+	// If the Jetpack font isn't in theme already, let Jetpack register it.
 	foreach ( $jetpack_fonts as $jetpack_font_family ) {
 		if ( ! in_array( $jetpack_font_family, $theme_font_families, true ) ) {
 			$filtered_list[] = $jetpack_font_family;

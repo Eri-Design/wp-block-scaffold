@@ -5,4 +5,5 @@
  * @package EriScaffoldTheme
  */
 
-require_once "post-types/post.php";
+// Include individual post type files.
+require_once 'post-types/post.php';

@@ -1,9 +1,19 @@
 <?php
+/**
+ * Custom font migration.
+ *
+ * @package EriScaffoldTheme
+ */
 
 add_action( 'init', 'migrate_eri_scaffold_custom_fonts', 99 );
 
+/**
+ * Migrate custom fonts from the Customizer to the global styles CPT.
+ *
+ * @return void
+ */
 function migrate_eri_scaffold_custom_fonts() {
-	// The data has already been transformed
+	// The data has already been transformed.
 	if ( get_theme_mod( 'eri_scaffold_legacy_font_settings' ) ) {
 		return;
 	}
@@ -11,7 +21,7 @@ function migrate_eri_scaffold_custom_fonts() {
 	$heading_font_slug = null;
 	$body_font_slug    = null;
 
-	// Here we must use gutenberg_get_global_* because it introduces clean_cached_data() which we
+	// Here we must use gutenberg_get_global_* because it introduces clean_cached_data() which we.
 	// need to leverage as we are modifying the values of global styles settings and styles on page load.
 	if ( function_exists( 'gutenberg_get_global_settings' ) ) {
 		$font_families = gutenberg_get_global_settings( array( 'typography', 'fontFamilies' ) );
@@ -27,8 +37,8 @@ function migrate_eri_scaffold_custom_fonts() {
 		return;
 	}
 
-	// Look first for fonts customized via Customizer, then for fonts configured in the child theme.json "the old way"
-	// Also count fonts registered to the font provider
+	// Look first for fonts customized via Customizer, then for fonts configured in the child theme.json "the old way".
+	// Also count fonts registered to the font provider.
 	foreach ( $font_families as $font_family ) {
 		if ( strpos( $font_family['slug'], 'heading' ) !== false && array_key_exists( 'fontSlug', $font_family ) ) {
 			$heading_font_slug = $font_family['fontSlug'];
@@ -39,7 +49,7 @@ function migrate_eri_scaffold_custom_fonts() {
 	}
 
 	if ( ! $body_font_slug && ! $heading_font_slug ) {
-		//nothing to convert
+		// nothing to convert.
 		return;
 	}
 
@@ -97,15 +107,13 @@ function migrate_eri_scaffold_custom_fonts() {
 /**
  * Updates the global styles CPT.
  *
- * @param array  $new_settings New global styles to update.
- * @param array  $new_styles New global styles settings to update.
- * @param int    $user_custom_post_type_id ID of global styles CPT.
- * @param object $global_styles_controller Controller that handles REST requests for global styles.
+ * @param array $new_settings New global styles to update.
+ * @param array $new_styles New global styles settings to update.
  *
  * @return void
  */
 function update_global_styles( $new_settings, $new_styles ) {
-	// Get the user's global styles CPT id
+	// Get the user's global styles CPT id.
 	$user_custom_post_type_id = WP_Theme_JSON_Resolver::get_user_global_styles_post_id();
 	$global_styles_controller = new WP_REST_Global_Styles_Controller();
 
@@ -116,7 +124,7 @@ function update_global_styles( $new_settings, $new_styles ) {
 
 	$global_styles_controller->update_item( $update_request );
 
-	// Ideally the call to update_item would delete all of the appropriate transients and caches
+	// Ideally the call to update_item would delete all of the appropriate transients and caches.
 	delete_transient( 'global_styles' );
 	delete_transient( 'global_styles_' . get_stylesheet() );
 	delete_transient( 'gutenberg_global_styles' );

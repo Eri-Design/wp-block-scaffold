@@ -14,16 +14,17 @@
  * @return array The modified post type registration arguments.
  */
 function eri_scaffold_set_default_block_template_for_posts( $args, $post_type ) {
-    // if ( 'post' === $post_type ) {
-    //     $args['template'] = array(
-    //         array( 'core/pattern', array( 'slug' => 'eri-scaffold/single-story-hero' ) ),
-    //         array( 'core/pattern', array( 'slug' => 'eri-scaffold/social-sharing' ) ),
-    //         array( 'core/pattern', array( 'slug' => 'eri-scaffold/single-story-content' ) ),
-    //         array( 'core/pattern', array( 'slug' => 'eri-scaffold/single-story-sticky-media' ) ),
-    //     );
-    // }
-
-    return $args;
+	if ( 'post' === $post_type ) {
+		$args['template'] = array(
+			array(
+				'core/paragraph',
+				array(
+					'placeholder' => 'Add the post content here...',
+				),
+			),
+		);
+	}
+	return $args;
 }
 add_filter( 'register_post_type_args', 'eri_scaffold_set_default_block_template_for_posts', 10, 2 );
 
@@ -38,16 +39,19 @@ add_filter( 'register_post_type_args', 'eri_scaffold_set_default_block_template_
  * @return array The modified terms array.
  */
 function eri_scaffold_hide_uncategorized_category( $terms, $taxonomies, $args, $term_query ) {
-    if ( ! is_admin() && in_array( 'category', $taxonomies, true ) ) {
-        $terms = array_filter( $terms, function( $term ) {
-            if ( ! empty( $term->name ) && 'Uncategorized' === $term->name ) {
-                return false;
-            }
+	if ( ! is_admin() && in_array( 'category', $taxonomies, true ) ) {
+		$terms = array_filter(
+			$terms,
+			function( $term ) {
+				if ( ! empty( $term->name ) && 'Uncategorized' === $term->name ) {
+					return false;
+				}
 
-            return true;
-        } );
-    }
+				return true;
+			}
+		);
+	}
 
-    return $terms;
+	return $terms;
 }
 add_filter( 'get_terms', 'eri_scaffold_hide_uncategorized_category', 10, 4 );
