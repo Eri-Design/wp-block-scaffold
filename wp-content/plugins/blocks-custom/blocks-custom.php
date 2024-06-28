@@ -171,7 +171,6 @@ function eri_scaffold_blocks_register_blocks() {
                 $dependencies,														                            // dependencies
                 filemtime( plugin_dir_path( __FILE__ ) . 'build/' . $block_directory . '/style-index.css' )	// set version as file last modified time
             );
-            wp_enqueue_style( $dir . '-front-end-styles' );
         }
 
         if ( file_exists( plugin_dir_path( __FILE__ ) . 'build/' . $block_directory . '/editor.css' ) ) {
@@ -208,7 +207,6 @@ function eri_scaffold_blocks_register_blocks() {
                 $dependencies,														            // dependencies
                 filemtime( plugin_dir_path( __FILE__ ) . 'build/' . $block_directory . '/script.js' )	// set version as file last modified time
             );
-            wp_enqueue_script( $dir . '-scripts' );
         }
 
         if ( file_exists( plugin_dir_path( __FILE__ ) . 'build/' . $block_directory . '/index.js' ) ) {
