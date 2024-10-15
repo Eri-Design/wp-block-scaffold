@@ -18,6 +18,7 @@ services:
     volumes:
       - "./wp-content/themes/block-theme:/var/www/html/wp-content/themes/block-theme"
       - "./wp-content/plugins/blocks-custom:/var/www/html/wp-content/plugins/blocks-custom"
+      - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
       - wp:/var/www/html
   mysql:
     image: "mariadb:10.2"
