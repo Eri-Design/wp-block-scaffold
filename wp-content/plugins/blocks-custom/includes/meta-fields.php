@@ -10,6 +10,7 @@
  */
 function eri_scaffold_register_meta_fields() {
 	// Example registering of meta field.
+	/*
 	register_post_meta(
 		'post',
 		'_external_link',
@@ -19,5 +20,6 @@ function eri_scaffold_register_meta_fields() {
 			'type'         => 'string',
 		)
 	);
+	*/
 }
 add_action( 'init', 'eri_scaffold_register_meta_fields' );
